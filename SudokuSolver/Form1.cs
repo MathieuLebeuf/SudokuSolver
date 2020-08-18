@@ -14,48 +14,20 @@ using System.Windows.Forms;
 // Date de création: 3 septembre 2019
 // Auteur: Mathieu Lebeuf
 
-namespace Sudoku_V2
+namespace SudokuSolver
 {
 
 
     public partial class Form1 : Form
     {
-        int[,] Sudoku = new int[9, 9]; //Array pour le sudoku.
-        int[,] grilleConnus = new int[9, 9];
+
         public long finCmptr = 0;
-        Sudoku_Board SudokuBoard = new Sudoku_Board();
-        Sudoku_Board KnownBoard = new Sudoku_Board(); //Track the already known number and position.
-
-        int[,] sudokuExemple = new int[,]
-        {
-            { 0, 3, 9, 2, 0, 0, 8, 6, 0 }, //1
-            { 0, 0, 0, 0, 0, 0, 9, 4, 7 }, //2
-            { 0, 4, 0, 7, 9, 0, 0, 0, 3 }, //3
-            { 0, 5, 3, 0, 7, 9, 0, 2, 0 }, //4
-            { 0, 0, 1, 8, 3, 2, 4, 0, 0 }, //5
-            { 0, 7, 0, 5, 6, 0, 1, 3, 0 }, //6
-            { 6, 0, 0, 0, 5, 1, 0, 8, 0 }, //7
-            { 2, 1, 4, 0, 0, 0, 0, 0, 0 }, //8
-            { 0, 8, 5, 0, 0, 6, 7, 1, 0 } //9
-        };
-
-        int[,] sudokuExemple2 = new int[,]
-        {
-            { 0, 5, 0, 0, 6, 9, 0, 0, 0 }, //1
-            { 0, 0, 0, 0, 0, 0, 0, 8, 0 }, //2
-            { 7, 4, 0, 0, 0, 8, 0, 0, 9 }, //3
-            { 2, 7, 0, 0, 1, 0, 0, 4, 0 }, //4
-            { 0, 0, 6, 4, 0, 2, 7, 0, 0 }, //5
-            { 0, 1, 0, 0, 7, 0, 0, 5, 3 }, //6
-            { 6, 0, 0, 9, 0, 0, 0, 7, 1 }, //7
-            { 0, 9, 0, 0, 0, 0, 0, 0, 0 }, //8
-            { 0, 0, 0, 7, 3, 0, 0, 9, 0 } //9
-        };
+        Sudoku_Board sudokuBoard = new Sudoku_Board();
+        Sudoku_Board knownBoard = new Sudoku_Board(); //Track the already known number and position.
 
         //Check.
         public Form1()
         {
-
             InitializeComponent();
             GUI_Start();
             tb_iteration.Text = "1000"; //default iteration
@@ -70,7 +42,7 @@ namespace Sudoku_V2
             {
                 l_itr.Show();
                 finCmptr = Convert.ToInt32(tb_iteration.Text);
-                Main(SudokuBoard, finCmptr);
+                Main(sudokuBoard, finCmptr);
             }
             else if (v == true)
             {
@@ -89,8 +61,8 @@ namespace Sudoku_V2
         {
             if (checkForEmptyTextBox())
             {
-                SudokuBoard.fillSudoku(arrayFromTextBoxSudokuGrid()); //Fill sudoku.
-                showSudoku(SudokuBoard); //Affiche le Sudoku visuellement
+                sudokuBoard.fillSudoku(arrayFromTextBoxSudokuGrid()); //Fill sudoku.
+                showSudoku(sudokuBoard); //Affiche le Sudoku visuellement
 
                 //show
                 gB_Sudoku.Show();
@@ -325,35 +297,17 @@ namespace Sudoku_V2
 
         private void btn_Exemple_Click(object sender, EventArgs e)
         {
-            if (tb_iteration.Text != "")
+            SudokuExamples sudokuExamples = new SudokuExamples();
+            for (int i = 1; i<= sudokuExamples.getNbExampleAvailable(); i++)
             {
-
-                SudokuBoard.fillSudoku(sudokuExemple);
-                showSudoku(SudokuBoard); //Affiche le Sudoku visuellement
-
-                //show
-                gB_Sudoku.Show();
-                btn_recommencer.Show();
-                btn_Resoudre.Show();
-                gB_data.Show();
-                lbl_itr.Show();
-                tb_iteration.Show();
-                checkB_Freeze.Show();
-                gB_info.Show();
-
-                //hide
-                gB_Enter.Hide();
-                btn_Confirmer.Hide();
-                btn_Effacer.Hide();
-                lbl_warning.Hide();
-               
-
+                cb_setExample.Items.Add(i);
             }
-            else
-            {
-                lbl_warning.Show();
-                lbl_warning.Text = "Veuillez entrer un nombre d'itérations";
-            }
+            gB_setexample.Show();
+            
+        }
+
+        private void FormExampleSelect_FormClosing(Object sender, FormClosingEventArgs e)
+        {
 
         }
 
@@ -380,6 +334,7 @@ namespace Sudoku_V2
             //hide
             checkB_Freeze.Hide();
             gB_Sudoku.Hide();
+            gB_setexample.Hide();
             btn_Resoudre.Hide();
             btn_recommencer.Hide();
             l_itr.Hide();
@@ -398,6 +353,7 @@ namespace Sudoku_V2
             gB_data.Show();
             lbl_itr.Show();
             tb_iteration.Show();
+            gB_setexample.Show();
 
             //hide
             checkB_Freeze.Hide();
@@ -412,6 +368,35 @@ namespace Sudoku_V2
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_setExample_Click(object sender, EventArgs e)
+        {
+            if(cb_setExample.Text != "")
+            {
+                int choice = Convert.ToInt16(cb_setExample.Text);
+                SudokuExamples sudokuExamples = new SudokuExamples();
+                sudokuBoard.fillSudoku(sudokuExamples.returnSudokuExample(choice));
+                showSudoku(sudokuBoard); //Affiche le Sudoku visuellement
+
+                //show
+                gB_Sudoku.Show();
+                btn_recommencer.Show();
+                btn_Resoudre.Show();
+                gB_data.Show();
+                lbl_itr.Show();
+                tb_iteration.Show();
+                checkB_Freeze.Show();
+                gB_info.Show();
+
+                //hide
+                gB_Enter.Hide();
+                btn_Confirmer.Hide();
+                btn_Effacer.Hide();
+                lbl_warning.Hide();
+                gB_setexample.Hide();
+            }
+         
         }
     }
 }

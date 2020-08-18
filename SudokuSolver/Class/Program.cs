@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sudoku_V2
+namespace SudokuSolver
 {
     static class Program
     {
@@ -14,9 +14,10 @@ namespace Sudoku_V2
         [STAThread]
         static void Main()
         {
+            Form1 form1 = new Form1();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(form1);
         }
     }
 }

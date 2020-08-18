@@ -1,4 +1,4 @@
-﻿namespace Sudoku_V2
+﻿namespace SudokuSolver
 {
     partial class Form1
     {
@@ -208,11 +208,15 @@
             this.gB_data = new System.Windows.Forms.GroupBox();
             this.gB_info = new System.Windows.Forms.GroupBox();
             this.btn_recommencer = new System.Windows.Forms.Button();
+            this.cb_setExample = new System.Windows.Forms.ComboBox();
+            this.btn_setExample = new System.Windows.Forms.Button();
+            this.gB_setexample = new System.Windows.Forms.GroupBox();
             this.gB_Sudoku.SuspendLayout();
             this.gB_Enter.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.gB_data.SuspendLayout();
             this.gB_info.SuspendLayout();
+            this.gB_setexample.SuspendLayout();
             this.SuspendLayout();
             // 
             // gB_Sudoku
@@ -2243,7 +2247,7 @@
             // quittezToolStripMenuItem
             // 
             this.quittezToolStripMenuItem.Name = "quittezToolStripMenuItem";
-            this.quittezToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.quittezToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.quittezToolStripMenuItem.Text = "Quittez";
             this.quittezToolStripMenuItem.Click += new System.EventHandler(this.quittezToolStripMenuItem_Click_1);
             // 
@@ -2337,7 +2341,7 @@
             // btn_recommencer
             // 
             this.btn_recommencer.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_recommencer.Location = new System.Drawing.Point(376, 155);
+            this.btn_recommencer.Location = new System.Drawing.Point(376, 173);
             this.btn_recommencer.Name = "btn_recommencer";
             this.btn_recommencer.Size = new System.Drawing.Size(175, 42);
             this.btn_recommencer.TabIndex = 85;
@@ -2345,12 +2349,44 @@
             this.btn_recommencer.UseVisualStyleBackColor = true;
             this.btn_recommencer.Click += new System.EventHandler(this.btn_recommencer_Click);
             // 
+            // cb_setExample
+            // 
+            this.cb_setExample.FormattingEnabled = true;
+            this.cb_setExample.Location = new System.Drawing.Point(6, 17);
+            this.cb_setExample.Name = "cb_setExample";
+            this.cb_setExample.Size = new System.Drawing.Size(100, 23);
+            this.cb_setExample.TabIndex = 82;
+            // 
+            // btn_setExample
+            // 
+            this.btn_setExample.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_setExample.Location = new System.Drawing.Point(112, 15);
+            this.btn_setExample.Name = "btn_setExample";
+            this.btn_setExample.Size = new System.Drawing.Size(58, 25);
+            this.btn_setExample.TabIndex = 83;
+            this.btn_setExample.Text = "Enter";
+            this.btn_setExample.UseVisualStyleBackColor = true;
+            this.btn_setExample.Click += new System.EventHandler(this.btn_setExample_Click);
+            // 
+            // gB_setexample
+            // 
+            this.gB_setexample.Controls.Add(this.btn_setExample);
+            this.gB_setexample.Controls.Add(this.cb_setExample);
+            this.gB_setexample.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gB_setexample.Location = new System.Drawing.Point(557, 148);
+            this.gB_setexample.Name = "gB_setexample";
+            this.gB_setexample.Size = new System.Drawing.Size(179, 49);
+            this.gB_setexample.TabIndex = 86;
+            this.gB_setexample.TabStop = false;
+            this.gB_setexample.Text = "Select Example";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(806, 413);
+            this.Controls.Add(this.gB_setexample);
             this.Controls.Add(this.btn_recommencer);
             this.Controls.Add(this.gB_info);
             this.Controls.Add(this.gB_data);
@@ -2373,6 +2409,7 @@
             this.gB_data.PerformLayout();
             this.gB_info.ResumeLayout(false);
             this.gB_info.PerformLayout();
+            this.gB_setexample.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2560,6 +2597,9 @@
         private System.Windows.Forms.GroupBox gB_data;
         private System.Windows.Forms.GroupBox gB_info;
         private System.Windows.Forms.Button btn_recommencer;
+        private System.Windows.Forms.Button btn_setExample;
+        private System.Windows.Forms.ComboBox cb_setExample;
+        private System.Windows.Forms.GroupBox gB_setexample;
     }
 }
 

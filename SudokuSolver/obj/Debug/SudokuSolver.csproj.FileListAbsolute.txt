@@ -13,6 +13,6 @@ C:\Users\mathi_000\Documents\GitHub\SudokuSolver\SudokuSolver\obj\Debug\SudokuSo
 C:\Users\mathi_000\Documents\GitHub\SudokuSolver\SudokuSolver\bin\Debug\SudokuSolver.exe
 C:\Users\mathi_000\Documents\GitHub\SudokuSolver\SudokuSolver\bin\Debug\SudokuSolver.pdb
 C:\Users\mathi_000\Documents\GitHub\SudokuSolver\SudokuSolver\obj\Debug\SudokuSolver.csprojResolveAssemblyReference.cache
-C:\Users\mathi_000\Documents\GitHub\SudokuSolver\SudokuSolver\obj\Debug\Sudoku_V2.Form1.resources
 C:\Users\mathi_000\Documents\GitHub\SudokuSolver\SudokuSolver\obj\Debug\SudokuSolver.Properties.Resources.resources
 C:\Users\mathi_000\Documents\GitHub\SudokuSolver\SudokuSolver\obj\Debug\SudokuSolver.csproj.GenerateResource.Cache
+C:\Users\mathi_000\Documents\GitHub\SudokuSolver\SudokuSolver\obj\Debug\SudokuSolver.Form1.resources

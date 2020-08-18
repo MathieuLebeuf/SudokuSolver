@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sudoku_V2
+namespace SudokuSolver
 {
     public class Sudoku_Board
     {
