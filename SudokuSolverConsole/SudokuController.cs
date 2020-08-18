@@ -31,7 +31,7 @@ namespace SudokuSolverConsole
             string buffer = "";
             int testInt;
             bool valid = false;
-            #endregion
+            
 
             Console.Clear();
             choice = UserChoice();
@@ -39,7 +39,7 @@ namespace SudokuSolverConsole
             if (choice == 1) //Enter sudoku.
             {
 
-                mainSudoku = EnterSudoku();
+                mainSudoku = EnterSudokuFromConsole();
 
                 if (mainSudoku == null)
                 {
@@ -52,6 +52,10 @@ namespace SudokuSolverConsole
                     Console.WriteLine("Sudoku is unvalid. Please restart.");
                     Console.ReadLine();
                     Main();
+                }
+                else
+                {
+                    Console.WriteLine("Sudoku is valid.");
                 }
             }
 
@@ -149,9 +153,10 @@ namespace SudokuSolverConsole
 
         }
 
-        private Sudoku_Board EnterSudoku()
+        private Sudoku_Board EnterSudokuFromConsole()
         {
             Sudoku_Board sudoku = new Sudoku_Board(3);
+            int[,] board = new int[9, 9];
             bool sudokuFill = false;
             int row =0;
             int col =0;
@@ -170,7 +175,7 @@ namespace SudokuSolverConsole
                     {
                         for (int j = 0; j < col; j++)
                         {
-                            Console.Write(sudoku.GetSquare(i, j) + " ");
+                            Console.Write(board[i,j] + " ");
                         }
                         Console.Write("X");
                         Console.WriteLine();
@@ -178,9 +183,9 @@ namespace SudokuSolverConsole
                     }
                     else if (i < row)
                     {
-                        for (int j = 0; j < sudoku.GetLength(); j++)
+                        for (int j = 0; j < 9; j++)
                         {
-                            Console.Write(sudoku.GetSquare(i, j) + " ");
+                            Console.Write(board[i, j] + " ");
                         }
                         Console.WriteLine();
                     }
@@ -190,7 +195,7 @@ namespace SudokuSolverConsole
                 buffer = Console.ReadLine();
                 if (int.TryParse(buffer, out testInt) || (row != 0 && col != 0))
                 {
-                    sudoku.SetSquare(row, col, testInt);
+                    board[row, col] = testInt;
                     if (col != 8)
                     {
                         col++;
@@ -208,6 +213,7 @@ namespace SudokuSolverConsole
                 Console.WriteLine();
             }
 
+            sudoku.FillSudoku(board);
             return sudoku;
         }
 
@@ -288,5 +294,6 @@ namespace SudokuSolverConsole
             SudokuExamples sudokuExample = new SudokuExamples(choice);
             return sudokuExample.GetSudokuExample();
         }
+        #endregion
     }
 }
