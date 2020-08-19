@@ -7,10 +7,9 @@ namespace SudokuSolverConsole
     {
 
         #region Variables
-        static int dimension = 3;
         public int iteration = 3;
-        static Sudoku_Board mainSudoku = new Sudoku_Board(dimension);
-        static Sudoku_Board solveSudoku = new Sudoku_Board(dimension);
+        static Sudoku_Board mainSudoku = new Sudoku_Board();
+        static Sudoku_Board solveSudoku = new Sudoku_Board();
         SudokuSolverLogic logicSudoku;
         #endregion
 
@@ -151,7 +150,7 @@ namespace SudokuSolverConsole
 
         private Sudoku_Board EnterSudokuFromConsole()
         {
-            Sudoku_Board sudoku = new Sudoku_Board(3);
+            Sudoku_Board sudoku = new Sudoku_Board();
             int[,] board = new int[9, 9];
             bool sudokuFill = false;
             int row =0;

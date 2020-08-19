@@ -4,7 +4,7 @@ namespace SudokuSolverLibrary
     public class Sudoku_Board
     {
         #region Variables
-        public int dimension;
+        public int dimension = 3;
         public int ActiveRow { get; private set; } = 0;
         public int ActiveCol { get; private set; } = 0;
         int[,] board = new int[9, 9];
@@ -12,9 +12,8 @@ namespace SudokuSolverLibrary
         #endregion
 
         #region Constructor
-        public Sudoku_Board(int dim)
+        public Sudoku_Board()
         {
-            dimension = dim;
             //Fill main Array board by 0 value
             for (int i = 0; i <= (dimension * dimension) - 1; i++)
             {
