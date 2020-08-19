@@ -288,7 +288,7 @@ namespace SudokuSolverConsole
                 }
                 for (int j = 0; j < sudoku.GetLength(); j++)
                 {
-                    if (j == 3 || j==6)
+                    if (j == 3 || j == 6)
                         Console.Write("| ");
                    Console.Write(sudoku.GetSquare(i, j) + " ");
                 }
