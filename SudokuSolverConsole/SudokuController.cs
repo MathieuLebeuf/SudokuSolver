@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using SudokuSolverLibrary;
 
 namespace SudokuSolverConsole
@@ -7,10 +8,9 @@ namespace SudokuSolverConsole
     {
 
         #region Variables
-        public int iteration = 3;
-        private Sudoku_Board mainSudoku = new Sudoku_Board();
-        private Sudoku_Board solveSudoku = new Sudoku_Board();
-        private SudokuSolverLogic logicSudoku;
+        static Sudoku_Board mainSudoku = new Sudoku_Board();
+        static Sudoku_Board solveSudoku = new Sudoku_Board();
+        SudokuSolverLogic logicSudoku;
         #endregion
 
         #region Methods.
@@ -272,15 +272,36 @@ namespace SudokuSolverConsole
 
         private void DisplaySudokuToConsole(Sudoku_Board sudoku)
         {
+            int xDisplayOffsetLength = 10;
+            int yDisplayOffset = 2;
+            string xDisplayOffset = string.Concat(Enumerable.Repeat(" ", xDisplayOffsetLength));
+
+            AddYOffset(yDisplayOffset);
+
             for (int i = 0; i < sudoku.GetLength(); i++)
             {
+                Console.Write(xDisplayOffset);
+                if (i == 3 || i == 6)
+                {
+                    Console.Write("- - -   - - -   - - -\n");
+                    Console.Write(xDisplayOffset);
+                }
                 for (int j = 0; j < sudoku.GetLength(); j++)
                 {
-                    Console.Write(sudoku.GetSquare(i, j) + " ");
+                    if (j == 3 || j==6)
+                        Console.Write("| ");
+                   Console.Write(sudoku.GetSquare(i, j) + " ");
                 }
                 Console.WriteLine();
             }
+            AddYOffset(yDisplayOffset);
             Console.ReadLine();
+        }
+
+        private void AddYOffset(int yDisplayOffset)
+        {
+            for (var yoffset = 0; yoffset < yDisplayOffset; yoffset++)
+                Console.WriteLine();
         }
 
         //Define sudoku from examples.
