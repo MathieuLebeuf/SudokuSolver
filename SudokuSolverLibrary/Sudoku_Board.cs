@@ -5,8 +5,8 @@ namespace SudokuSolverLibrary
     {
         #region Variables
         public int dimension;
-        public int activeRow = 0;
-        public int activeCol = 0;
+        public int ActiveRow { get; private set; } = 0;
+        public int ActiveCol { get; private set; } = 0;
         int[,] board = new int[9, 9];
         int[,] knownBoard = new int[9, 9];
         #endregion
@@ -61,26 +61,6 @@ namespace SudokuSolverLibrary
             return knownBoard[i, j];
         }
 
-        public int GetActiveRowNumber()
-        {
-            return activeRow;
-        }
-
-        public void SetActiveRow(int newRow)
-        {
-            activeRow = newRow;
-        }
-
-        public int GetActiveColNumber()
-        {
-            return activeCol;
-        }
-
-        public void SetActiveCol(int newCol)
-        {
-            activeCol = newCol;
-        }
-
         //Return row array.
         public int[] GetRow(int rowNumber)
         {
@@ -131,17 +111,17 @@ namespace SudokuSolverLibrary
 
         public void MoveFowardNextValidSquare()
         {
-            if (activeCol != 8)
+            if (ActiveCol != 8)
             {
-                activeCol++;
+                ActiveCol++;
             }
             else
             {
-                activeCol = 0;
-                activeRow++;
+                ActiveCol = 0;
+                ActiveRow++;
             }
 
-            if (knownBoard[activeRow,activeCol] == 1)
+            if (knownBoard[ActiveRow,ActiveCol] == 1)
             {
                 MoveFowardNextValidSquare();
             }
@@ -149,17 +129,17 @@ namespace SudokuSolverLibrary
 
         public void MoveBackwardNextValidSquare()
         {
-            if (activeCol != 0)
+            if (ActiveCol != 0)
             {
-                activeCol--;
+                ActiveCol--;
             }
-            else if(activeCol == 0 & activeRow != 0)
+            else if(ActiveCol == 0 & ActiveRow != 0)
             {
-                activeCol = 8;
-                activeRow--;
+                ActiveCol = 8;
+                ActiveRow--;
             }
 
-            if (knownBoard[activeRow, activeCol] == 1)
+            if (knownBoard[ActiveRow, ActiveCol] == 1)
             {
                 MoveBackwardNextValidSquare();
             }

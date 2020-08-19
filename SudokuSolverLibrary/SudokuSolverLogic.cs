@@ -29,15 +29,15 @@ namespace SudokuSolverLibrary
             {
                // l_itr.Text = String.Concat("Iteration: ", Convert.ToString(cmptr));
 
-                if (sudokuBoard.GetSquareKnownBoard(sudokuBoard.GetActiveRowNumber(), sudokuBoard.GetActiveColNumber()) == 0)
+                if (sudokuBoard.GetSquareKnownBoard(sudokuBoard.ActiveRow, sudokuBoard.ActiveCol) == 0)
                 {
 
                     nbToAdd = findNumber(sudokuBoard); // Find if number can be put inside square from active square.
 
                     if (nbToAdd < 10)
                     {
-                        sudokuBoard.SetSquare(sudokuBoard.GetActiveRowNumber(), sudokuBoard.GetActiveColNumber(), nbToAdd);
-                        endOfloop = VerifierFin(sudokuBoard.ReturnIndex(sudokuBoard.activeRow, sudokuBoard.activeCol));
+                        sudokuBoard.SetSquare(sudokuBoard.ActiveRow, sudokuBoard.ActiveCol, nbToAdd);
+                        endOfloop = VerifierFin(sudokuBoard.ReturnIndex(sudokuBoard.ActiveRow, sudokuBoard.ActiveCol));
                         if (endOfloop == false)
                         {
                             sudokuBoard.MoveFowardNextValidSquare();
@@ -46,7 +46,7 @@ namespace SudokuSolverLibrary
                     }
                     else if (nbToAdd == 10)
                     {
-                        sudokuBoard.SetSquare(sudokuBoard.GetActiveRowNumber(), sudokuBoard.GetActiveColNumber(), 0);
+                        sudokuBoard.SetSquare(sudokuBoard.ActiveRow, sudokuBoard.ActiveCol, 0);
                         sudokuBoard.MoveBackwardNextValidSquare();
                     }
 
@@ -80,9 +80,9 @@ namespace SudokuSolverLibrary
 
         public int findNumber(Sudoku_Board Sudoku)
         {
-            for (int i = Sudoku.GetSquare(Sudoku.GetActiveRowNumber(), Sudoku.GetActiveColNumber()); i <= 10; i++)
+            for (int i = Sudoku.GetSquare(Sudoku.ActiveRow, Sudoku.ActiveCol); i <= 10; i++)
             {
-                if (Sudoku.IsValid(Sudoku.GetActiveRowNumber(), Sudoku.GetActiveColNumber(), i))
+                if (Sudoku.IsValid(Sudoku.ActiveRow, Sudoku.ActiveCol, i))
                 {
                     return i;
                 }
