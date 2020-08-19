@@ -4,7 +4,7 @@ namespace SudokuSolverLibrary
     public class Sudoku_Board
     {
         #region Variables
-        public int dimension = 3;
+        public int Dimension { get; private set; } = 3;
         public int ActiveRow { get; private set; } = 0;
         public int ActiveCol { get; private set; } = 0;
         int[,] board = new int[9, 9];
@@ -15,9 +15,9 @@ namespace SudokuSolverLibrary
         public Sudoku_Board()
         {
             //Fill main Array board by 0 value
-            for (int i = 0; i <= (dimension * dimension) - 1; i++)
+            for (int i = 0; i <= (Dimension * Dimension) - 1; i++)
             {
-                for (int j = 0; j <= (dimension * dimension) - 1; j++)
+                for (int j = 0; j <= (Dimension * Dimension) - 1; j++)
                 {
                     board[i, j] = 0;
                     knownBoard[i, j] = 0;
@@ -43,14 +43,9 @@ namespace SudokuSolverLibrary
             return board[i, j];
         }
 
-        public int GetDimension()
-        {
-            return dimension;
-        }
-
         public int GetLength()
         {
-            int length = dimension * dimension;
+            int length = Dimension * Dimension;
 
             return length;
         }
@@ -58,32 +53,6 @@ namespace SudokuSolverLibrary
         public int GetSquareKnownBoard(int i, int j)
         {
             return knownBoard[i, j];
-        }
-
-        //Return row array.
-        public int[] GetRow(int rowNumber)
-        {
-            int[] row = new int[dimension * dimension];
-
-            for (int i = 0; i <= 8; i++)
-            {
-                row[i] = board[rowNumber, i];
-            }
-
-            return row;
-        }
-
-        //Return col array.
-        public int[] GetCol(int colNumber)
-        {
-            int[] row = new int[dimension * dimension];
-
-            for (int i = 0; i <= 8; i++)
-            {
-                row[i] = board[i, colNumber];
-            }
-
-            return row;
         }
 
         public int ReturnIndex(int row, int col)
@@ -95,9 +64,9 @@ namespace SudokuSolverLibrary
         public void FillSudoku(int[,] sudokuArray)
         {
             // Fill the Sudoku board with the example.
-            for (int i = 0; i <= (dimension * dimension) - 1; i++)
+            for (int i = 0; i <= (Dimension * Dimension) - 1; i++)
             {
-                for (int j = 0; j <= (dimension * dimension) - 1; j++)
+                for (int j = 0; j <= (Dimension * Dimension) - 1; j++)
                 {
                     board[i, j] = sudokuArray[i, j];
                     if (sudokuArray[i, j] != 0)
@@ -149,7 +118,7 @@ namespace SudokuSolverLibrary
         {
 
             //Verify column.
-            for (int k = 0; k < dimension * dimension; k++)
+            for (int k = 0; k < Dimension * Dimension; k++)
             {
                 if (board[k, col] == n)
                 {
@@ -158,7 +127,7 @@ namespace SudokuSolverLibrary
             }
 
             // Verify row..
-            for (int l = 0; l < dimension * dimension; l++)
+            for (int l = 0; l < Dimension * Dimension; l++)
             {
                 if (board[row, l] == n)
                 {

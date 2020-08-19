@@ -8,9 +8,9 @@ namespace SudokuSolverConsole
 
         #region Variables
         public int iteration = 3;
-        static Sudoku_Board mainSudoku = new Sudoku_Board();
-        static Sudoku_Board solveSudoku = new Sudoku_Board();
-        SudokuSolverLogic logicSudoku;
+        private Sudoku_Board mainSudoku = new Sudoku_Board();
+        private Sudoku_Board solveSudoku = new Sudoku_Board();
+        private SudokuSolverLogic logicSudoku;
         #endregion
 
         #region Methods.

@@ -4,7 +4,6 @@ namespace SudokuSolverLibrary
     public class SudokuExamples
     {
         #region Variables
-        static int Dimension =3;
         private int nbExampleAvailable = 3;
         private Sudoku_Board SudokuExample = new Sudoku_Board();
 
