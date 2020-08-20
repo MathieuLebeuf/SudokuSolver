@@ -116,80 +116,40 @@ namespace SudokuSolverLibrary
         //Verify unicity of data.
         public bool IsValid(int row, int col, int n)
         {
+            int modRow = row - (row %3);
+            int modCol = col - (col %3);
 
             //Verify column.
-            for (int k = 0; k < Dimension * Dimension; k++)
+            for (int i = 0; i < Dimension * Dimension; i++)
             {
-                if (board[k, col] == n)
+                if (board[i, col] == n)
                 {
                     return false;
                 }
             }
 
-            // Verify row..
-            for (int l = 0; l < Dimension * Dimension; l++)
+            // Verify row.
+            for (int j = 0; j < Dimension * Dimension; j++)
             {
-                if (board[row, l] == n)
+                if (board[row, j] == n)
                 {
                     return false;
                 }
             }
 
-            // Vérifier si dans carré.
-            if ((row >= 0 & row <= 2) & (col >= 0 & col <= 2)) // Premier cadran
+            // Verify bloc.
+            for (int k = 0; k < 3; k++)
             {
-                return TestSubGrid(0, 0, n);
-            }
-            else if ((row >= 0 & row <= 2) & (col >= 3 & col <= 5)) // Deuxième cadran
-            {
-                return TestSubGrid(0, 3, n);
-            }
-            else if ((row >= 0 & row <= 2) & (col >= 6 & col <= 8)) // Troisieme cadran
-            {
-                return TestSubGrid(0, 6, n);
-            }
-            else if ((row >= 3 & row <= 5) & (col >= 0 & col <= 2)) // Quatrieme cadran
-            {
-                return TestSubGrid(3, 0, n);
-            }
-            else if ((row >= 3 & row <= 5) & (col >= 3 & col <= 5)) // Cinquième cadran
-            {
-                return TestSubGrid(3, 3, n);
-            }
-            else if ((row >= 3 & row <= 5) & (col >= 6 & col <= 8)) // Sixième cadran
-            {
-                return TestSubGrid(3, 6, n);
-            }
-            else if ((row >= 6 & row <= 8) & (col >= 0 & col <= 2)) // Septième cadran
-            {
-                return TestSubGrid(6, 0, n);
-            }
-            else if ((row >= 6 & row <= 8) & (col >= 3 & col <= 5)) // Huitième cadran
-            {
-                return TestSubGrid(6, 3, n);
-            }
-            else if ((row >= 6 & row <= 8) & (col >= 6 & col <= 8)) // Neuvième cadran
-            {
-                return TestSubGrid(6, 6,n);
-            }
-
-            return true;
-        }
-
-        private bool TestSubGrid(int row, int col,int n)
-        {
-            for (int s = row; s <= row + 2; s++) //row
-            {
-                for (int t = col; t <= col +2; t++) //col
+                for (int l = 0; l < 3; l++)
                 {
-                    if (board[s, t] == n)
+                    if (board[k + modRow, l + modCol] == n)
                     {
                         return false;
                     }
                 }
             }
             return true;
-        }
+        } 
         #endregion
     }
 }
